@@ -44,11 +44,17 @@ Claude Code can seamlessly escalate from headless browser automation to a human-
 
 ## Context
 
-- Containers run Ubuntu 24.04 with Node.js 22, Xvfb pre-installed
-- Missing from containers: x11vnc, noVNC, websockify, Chromium
-- One container had a broken cobrowse setup (systemd service looping 23K+ restarts due to missing start script) — that instance's scripts are gone, building fresh
+- Containers are Hetzner LXC (32GB/8vCPU), Ubuntu 24.04, Node.js 22, Xvfb pre-installed
+- Missing from this container: x11vnc, noVNC, websockify, Chromium
+- One container had a broken cobrowse setup (systemd service looping 23K+ restarts due to missing start script) — building fresh
+- Another box has a **working reference implementation** with this proven stack:
+  - Xvfb :99 → Chromium with `--remote-debugging-port=9222` → noVNC web view
+  - 4 interaction methods: noVNC (human), xdotool (simple Claude actions), Playwright CDP via `connectOverCDP('http://localhost:9222')` (complex Claude actions), screenshots via `import -window root`
+  - Clipboard bridge: HTTP server on Tailscale for text exchange (`clip`/`getclip`)
+  - Practical workflow: noVNC for auth flows, xdotool for simple clicks, Playwright CDP for complex UIs (Google Apps Script, forms)
+  - Key finding: Google's complex UIs don't respond well to synthetic X11 events — Playwright CDP is more reliable
 - Existing codebase is a distribution kit: template files + install/scaffold scripts
-- User runs 3-5 Claude Code project containers concurrently
+- User runs 3-5 Claude Code project containers concurrently on Tailscale network
 - User accesses containers from a laptop via browser
 - Playwright already used for E2E testing in target projects; this extends it with co-browsing capability
 - Escalation is currently ad-hoc: sometimes Claude detects OAuth pages, sometimes user notices something's stuck
@@ -66,7 +72,7 @@ Claude Code can seamlessly escalate from headless browser automation to a human-
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Xvfb + x11vnc + noVNC stack | Standard lightweight VNC-over-web solution for headless Linux | — Pending |
+| Xvfb + Chromium CDP + noVNC | Proven on reference box; CDP port 9222 enables both noVNC viewing and Playwright control | — Pending |
 | Reverse proxy over fixed ports | Single entry point, cleaner URL scheme for 3-5 containers | — Pending |
 | Headless → headed on demand | Saves resources; only use display when human needs to see | — Pending |
 | Dual notification (tab + webhook) | Tab flash for when you're watching; webhook for when you're not | — Pending |
