@@ -37,10 +37,23 @@ sudo apt-get install -y \
   novnc \
   python3-websockify \
   python3-numpy \
-  chromium-browser \
   x11-utils \
+  xdg-utils \
   lsof \
   curl \
+  wget
+
+# Install Google Chrome (chromium-browser is snap-based which has confinement issues)
+echo ""
+echo "Installing Google Chrome..."
+if [ ! -x /usr/bin/google-chrome-stable ]; then
+  wget -q -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb || sudo apt-get install -f -y
+  rm -f /tmp/google-chrome-stable_current_amd64.deb
+  echo "  ✓ Google Chrome installed"
+else
+  echo "  ✓ Google Chrome already installed"
+fi \
   net-tools
 
 echo ""

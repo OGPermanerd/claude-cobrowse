@@ -7,9 +7,9 @@ Requires=xvfb@%i.service
 [Service]
 Type=simple
 Environment="DISPLAY=:%i"
-ExecStartPre=/usr/bin/test -x /usr/bin/chromium-browser
+ExecStartPre=/usr/bin/test -x /usr/bin/google-chrome-stable
 ExecStartPre=/bin/bash -c 'timeout 10 bash -c "until DISPLAY=:%i xdpyinfo >/dev/null 2>&1; do sleep 0.5; done"'
-ExecStart=/usr/bin/chromium-browser --remote-debugging-port=9222 --user-data-dir=/home/dev/.cobrowse/chrome-profile --no-first-run --no-default-browser-check --disable-gpu --disable-dev-shm-usage --disable-software-rasterizer --window-size=1920,1080
+ExecStart=/usr/bin/google-chrome-stable --remote-debugging-port=9222 --user-data-dir=/home/dev/.cobrowse/chrome-profile --no-first-run --no-default-browser-check --disable-gpu --disable-dev-shm-usage --disable-software-rasterizer --window-size=1920,1080
 Restart=on-failure
 RestartSec=10s
 StartLimitIntervalSec=300

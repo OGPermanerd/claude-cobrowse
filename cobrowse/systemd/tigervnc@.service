@@ -5,9 +5,10 @@ After=xvfb@%i.service
 Requires=xvfb@%i.service
 
 [Service]
-Type=simple
+Type=forking
+EnvironmentFile=/home/dev/.cobrowse/display.env
 ExecStartPre=/bin/bash -c 'timeout 10 bash -c "until DISPLAY=:%i xdpyinfo >/dev/null 2>&1; do sleep 0.5; done"'
-ExecStart=/usr/bin/x0vncserver -display :%i -rfbport 59%i -SecurityTypes None
+ExecStart=/bin/bash -c 'source /home/dev/.cobrowse/display.env && exec /usr/bin/x0vncserver -display :%i -rfbport $VNC_PORT -SecurityTypes None'
 Restart=on-failure
 RestartSec=10s
 StartLimitIntervalSec=300

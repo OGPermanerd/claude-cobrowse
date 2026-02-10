@@ -27,7 +27,7 @@ TOTAL=4
 echo -n "1. Xvfb (display :${DISPLAY_NUM}): "
 if xdpyinfo -display ":${DISPLAY_NUM}" >/dev/null 2>&1; then
   echo "OK"
-  ((HEALTHY++))
+  HEALTHY=$((HEALTHY + 1))
 else
   echo "FAIL"
 fi
@@ -36,7 +36,7 @@ fi
 echo -n "2. VNC Server (port ${VNC_PORT}): "
 if ss -tlnp 2>/dev/null | grep -q ":${VNC_PORT}"; then
   echo "OK"
-  ((HEALTHY++))
+  HEALTHY=$((HEALTHY + 1))
 else
   echo "FAIL"
 fi
@@ -46,7 +46,7 @@ echo -n "3. noVNC (port ${NOVNC_PORT}): "
 HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:${NOVNC_PORT}" 2>/dev/null || echo "000")
 if [[ "$HTTP_CODE" == "200" ]]; then
   echo "OK"
-  ((HEALTHY++))
+  HEALTHY=$((HEALTHY + 1))
 else
   echo "FAIL (HTTP $HTTP_CODE)"
 fi
@@ -54,9 +54,13 @@ fi
 # Check 4: Chromium CDP
 echo -n "4. Chromium CDP (port ${CDP_PORT}): "
 if CDP_VERSION=$(curl -s "http://localhost:${CDP_PORT}/json/version" 2>/dev/null); then
-  BROWSER=$(echo "$CDP_VERSION" | grep -o '"Browser":"[^"]*"' | cut -d'"' -f4)
-  echo "OK ($BROWSER)"
-  ((HEALTHY++))
+  BROWSER=$(echo "$CDP_VERSION" | grep -o '"Browser"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*"\([^"]*\)"/\1/')
+  if [[ -n "$BROWSER" ]]; then
+    echo "OK ($BROWSER)"
+  else
+    echo "OK"
+  fi
+  HEALTHY=$((HEALTHY + 1))
 else
   echo "FAIL"
 fi
