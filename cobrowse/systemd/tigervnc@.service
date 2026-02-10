@@ -1,0 +1,17 @@
+[Unit]
+Description=TigerVNC server for display :%i
+Documentation=man:x0vncserver(1)
+After=xvfb@%i.service
+Requires=xvfb@%i.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/bash -c 'timeout 10 bash -c "until DISPLAY=:%i xdpyinfo >/dev/null 2>&1; do sleep 0.5; done"'
+ExecStart=/usr/bin/x0vncserver -display :%i -rfbport 59%i -SecurityTypes None
+Restart=on-failure
+RestartSec=10s
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target

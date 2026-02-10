@@ -1,0 +1,15 @@
+[Unit]
+Description=noVNC web client for display :%i
+Documentation=https://novnc.com/info.html
+After=tigervnc@%i.service
+Requires=tigervnc@%i.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/bash -c 'timeout 5 bash -c "until lsof -i :59%i >/dev/null 2>&1; do sleep 0.5; done"'
+ExecStart=/usr/bin/websockify --web=/usr/share/novnc 6080 localhost:59%i
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=default.target
