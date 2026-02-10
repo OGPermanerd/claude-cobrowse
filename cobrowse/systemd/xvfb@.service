@@ -7,7 +7,7 @@ Type=simple
 ExecStartPre=/usr/bin/test -x /usr/bin/Xvfb
 ExecStart=/usr/bin/Xvfb :%i -screen 0 1920x1080x24 -ac +extension GLX +render -noreset
 Restart=on-failure
-RestartSec=10s
+RestartSec=2s
 StartLimitIntervalSec=300
 StartLimitBurst=5
 

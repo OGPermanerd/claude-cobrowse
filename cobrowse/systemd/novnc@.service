@@ -7,10 +7,10 @@ Requires=tigervnc@%i.service
 [Service]
 Type=simple
 EnvironmentFile=/home/dev/.cobrowse/display.env
-ExecStartPre=/bin/bash -c 'source /home/dev/.cobrowse/display.env && timeout 5 bash -c "until lsof -i :$VNC_PORT >/dev/null 2>&1; do sleep 0.5; done"'
+ExecStartPre=/bin/bash -c 'source /home/dev/.cobrowse/display.env && timeout 3 bash -c "until lsof -i :$VNC_PORT >/dev/null 2>&1; do sleep 0.1; done"'
 ExecStart=/bin/bash -c 'source /home/dev/.cobrowse/display.env && exec /usr/bin/websockify --web=/usr/share/novnc $NOVNC_PORT localhost:$VNC_PORT'
 Restart=on-failure
-RestartSec=10s
+RestartSec=2s
 StartLimitIntervalSec=300
 StartLimitBurst=5
 
