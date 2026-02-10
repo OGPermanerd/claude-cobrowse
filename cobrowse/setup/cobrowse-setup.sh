@@ -40,6 +40,7 @@ sudo apt-get install -y \
   x11-utils \
   xdg-utils \
   lsof \
+  net-tools \
   curl \
   wget
 
@@ -53,8 +54,7 @@ if [ ! -x /usr/bin/google-chrome-stable ]; then
   echo "  ✓ Google Chrome installed"
 else
   echo "  ✓ Google Chrome already installed"
-fi \
-  net-tools
+fi
 
 echo ""
 echo "Step 2: Creating directory structure..."

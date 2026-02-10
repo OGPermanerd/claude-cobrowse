@@ -11,6 +11,8 @@ ExecStartPre=/bin/bash -c 'source /home/dev/.cobrowse/display.env && timeout 5 b
 ExecStart=/bin/bash -c 'source /home/dev/.cobrowse/display.env && exec /usr/bin/websockify --web=/usr/share/novnc $NOVNC_PORT localhost:$VNC_PORT'
 Restart=on-failure
 RestartSec=10s
+StartLimitIntervalSec=300
+StartLimitBurst=5
 
 [Install]
 WantedBy=default.target

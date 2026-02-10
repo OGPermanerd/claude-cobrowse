@@ -9,11 +9,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Display Stack
 
-- [ ] **DISP-01**: Xvfb virtual framebuffer runs on display :99 with systemd auto-start
-- [ ] **DISP-02**: TigerVNC serves display :99 over VNC protocol (port 5900)
-- [ ] **DISP-03**: noVNC + websockify provides browser-accessible view of VNC session (port 6080)
-- [ ] **DISP-04**: Chromium launches on display :99 with `--remote-debugging-port=9222` and `--user-data-dir`
-- [ ] **DISP-05**: All display components managed by systemd services with proper restart limits and validation
+- [x] **DISP-01**: Xvfb virtual framebuffer runs on display :99 with systemd auto-start
+- [x] **DISP-02**: TigerVNC serves display :99 over VNC protocol (port 5900)
+- [x] **DISP-03**: noVNC + websockify provides browser-accessible view of VNC session (port 6080)
+- [x] **DISP-04**: Chromium launches on display :99 with `--remote-debugging-port=9222` and `--user-data-dir`
+- [x] **DISP-05**: All display components managed by systemd services with proper restart limits and validation
 - [ ] **DISP-06**: nginx reverse proxy routes path-based URLs to container noVNC sessions (`/project-a/`, `/project-b/`)
 - [ ] **DISP-07**: Reverse proxy handles WebSocket upgrade for VNC protocol
 
@@ -37,17 +37,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### State
 
-- [ ] **STAT-01**: Browser session persists across restarts via `--user-data-dir` (cookies, localStorage)
+- [x] **STAT-01**: Browser session persists across restarts via `--user-data-dir` (cookies, localStorage)
 - [ ] **STAT-02**: Playwright can inject cookies directly via CDP to skip login flows
 - [ ] **STAT-03**: Playwright can set localStorage values via `page.evaluate()` to restore state
 - [ ] **STAT-04**: API call shortcuts documented for common auth flows (token injection, session creation)
 
 ### Setup
 
-- [ ] **SETUP-01**: Single `cobrowse-setup.sh` script installs entire stack (Xvfb, TigerVNC, noVNC, Chromium) on Ubuntu 24.04
-- [ ] **SETUP-02**: Setup script is idempotent (safe to run multiple times)
-- [ ] **SETUP-03**: Start/stop scripts manage all services (`cobrowse-start.sh`, `cobrowse-stop.sh`)
-- [ ] **SETUP-04**: Setup works for non-root user (dev) with sudo for package installation
+- [x] **SETUP-01**: Single `cobrowse-setup.sh` script installs entire stack (Xvfb, TigerVNC, noVNC, Chromium) on Ubuntu 24.04
+- [x] **SETUP-02**: Setup script is idempotent (safe to run multiple times)
+- [x] **SETUP-03**: Start/stop scripts manage all services (`cobrowse-start.sh`, `cobrowse-stop.sh`)
+- [x] **SETUP-04**: Setup works for non-root user (dev) with sudo for package installation
 
 ### Testing Lab
 
@@ -91,11 +91,11 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DISP-01 | Phase 1 | Pending |
-| DISP-02 | Phase 1 | Pending |
-| DISP-03 | Phase 1 | Pending |
-| DISP-04 | Phase 1 | Pending |
-| DISP-05 | Phase 1 | Pending |
+| DISP-01 | Phase 1 | Complete |
+| DISP-02 | Phase 1 | Complete |
+| DISP-03 | Phase 1 | Complete |
+| DISP-04 | Phase 1 | Complete |
+| DISP-05 | Phase 1 | Complete |
 | DISP-06 | Phase 3 | Pending |
 | DISP-07 | Phase 3 | Pending |
 | AUTO-01 | Phase 2 | Pending |
@@ -110,14 +110,14 @@ Deferred to future release. Tracked but not in current roadmap.
 | HAND-04 | Phase 5 | Pending |
 | HAND-05 | Phase 5 | Pending |
 | HAND-06 | Phase 4 | Pending |
-| STAT-01 | Phase 1 | Pending |
+| STAT-01 | Phase 1 | Complete |
 | STAT-02 | Phase 2 | Pending |
 | STAT-03 | Phase 2 | Pending |
 | STAT-04 | Phase 2 | Pending |
-| SETUP-01 | Phase 1 | Pending |
-| SETUP-02 | Phase 1 | Pending |
-| SETUP-03 | Phase 1 | Pending |
-| SETUP-04 | Phase 1 | Pending |
+| SETUP-01 | Phase 1 | Complete |
+| SETUP-02 | Phase 1 | Complete |
+| SETUP-03 | Phase 1 | Complete |
+| SETUP-04 | Phase 1 | Complete |
 | TEST-01 | Phase 6 | Pending |
 | TEST-02 | Phase 6 | Pending |
 | TEST-03 | Phase 6 | Pending |
@@ -132,4 +132,4 @@ Deferred to future release. Tracked but not in current roadmap.
 
 ---
 *Requirements defined: 2026-02-09*
-*Last updated: 2026-02-09 after initial definition*
+*Last updated: 2026-02-10 — Phase 1 requirements marked Complete*

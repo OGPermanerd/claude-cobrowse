@@ -12,7 +12,7 @@ This roadmap takes Claude Co-Browse from existing Playwright E2E scaffolding to 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Display Stack Foundation** - Xvfb + TigerVNC + noVNC + Chromium running on single container
+- [x] **Phase 1: Display Stack Foundation** - Xvfb + TigerVNC + noVNC + Chromium running on single container
 - [ ] **Phase 2: Playwright CDP Integration** - Dual-control automation via CDP while human monitors noVNC
 - [ ] **Phase 3: Multi-Container Routing** - nginx reverse proxy serving 3-5 container noVNC sessions
 - [ ] **Phase 4: Intelligent Escalation** - Notifications via tab flash and webhook when human input needed
@@ -34,8 +34,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Setup script and systemd service templates for display stack
-- [ ] 01-02-PLAN.md — Runtime scripts (start/stop/status) and end-to-end verification
+- [x] 01-01-PLAN.md — Setup script and systemd service templates for display stack
+- [x] 01-02-PLAN.md — Runtime scripts (start/stop/status) and end-to-end verification
 
 ### Phase 2: Playwright CDP Integration
 **Goal**: Claude Code drives browser via Playwright CDP while human watches simultaneously in noVNC
@@ -116,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Display Stack Foundation | 0/2 | Not started | - |
+| 1. Display Stack Foundation | 2/2 | Complete | 2026-02-10 |
 | 2. Playwright CDP Integration | 0/TBD | Not started | - |
 | 3. Multi-Container Routing | 0/TBD | Not started | - |
 | 4. Intelligent Escalation | 0/TBD | Not started | - |
