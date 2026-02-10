@@ -31,10 +31,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Chromium CDP debugger accessible at localhost:9222 from container shell
   4. Browser session survives service restart (cookies and localStorage persist via --user-data-dir)
   5. Setup script installs entire stack on fresh Ubuntu 24.04 container in under 5 minutes
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD during planning
+- [ ] 01-01-PLAN.md — Setup script and systemd service templates for display stack
+- [ ] 01-02-PLAN.md — Runtime scripts (start/stop/status) and end-to-end verification
 
 ### Phase 2: Playwright CDP Integration
 **Goal**: Claude Code drives browser via Playwright CDP while human watches simultaneously in noVNC
@@ -115,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Display Stack Foundation | 0/TBD | Not started | - |
+| 1. Display Stack Foundation | 0/2 | Not started | - |
 | 2. Playwright CDP Integration | 0/TBD | Not started | - |
 | 3. Multi-Container Routing | 0/TBD | Not started | - |
 | 4. Intelligent Escalation | 0/TBD | Not started | - |
